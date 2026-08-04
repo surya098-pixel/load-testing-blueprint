@@ -21,7 +21,9 @@ This template captures that pattern. It uses Gatling's open-source edition (`gat
 | Feature | Included |
 |---|---|
 | Gatling 3.11 + Java 17 DSL | ✅ |
-| Four canonical simulations — **smoke, load, stress, spike** | ✅ |
+| Five canonical simulations — **smoke, load, stress, spike, stateful** | ✅ |
+| **CSV feeder** wired into a real scenario — parameterize per virtual user | ✅ |
+| **Stateful correlation chain** — extract from response, reuse in next request | ✅ |
 | Dynamic **injection DSL** driven by system properties (`-DSEQUENCE=...`) | ✅ |
 | Reusable HTTP chains module (the "page object" of load tests) | ✅ |
 | Base simulation with shared protocol / auth / headers | ✅ |
@@ -43,6 +45,7 @@ cd load-testing-blueprint
 ./scripts/run.sh load               # ramp 1→20 rps, hold for 5 min
 ./scripts/run.sh stress             # climbing steps to 200 rps for 10+ min
 ./scripts/run.sh spike              # normal → 500-user peak → recover
+./scripts/run.sh stateful           # extract-then-reuse chain, CSV-fed users
 
 BASE_URL=https://your-api.example.com ./scripts/run.sh load
 ```
@@ -124,6 +127,25 @@ src/test/
 | **load** | Ramp to expected steady-state, hold | Nightly. Verifies the system handles normal production volume. |
 | **stress** | Climb past capacity until it breaks | Weekly / before major releases. Finds the breaking point. |
 | **spike** | Normal → sudden peak → back to normal | Before campaigns / launches. Verifies elasticity + recovery. |
+| **stateful** | Feed users from CSV; each session does GET → extract → POST → verify roundtrip | Realistic scenarios where a request depends on a value from the previous one (login tokens, correlation ids). |
+
+## Stateful correlation — the real-world pattern
+
+Most real load tests aren't stateless. A user logs in, gets a token, makes ten calls with that token, then logs out. `StatefulChainSimulation` shows the pattern:
+
+```java
+exec(http("GET /uuid — obtain a token")
+    .get("/uuid")
+    .check(jsonPath("$.uuid").saveAs("obtainedUuid")))
+.pause(1)
+.exec(http("POST /anything — use the token")
+    .post("/anything")
+    .header("X-Correlation-Id", "#{obtainedUuid}")
+    .body(StringBody("{\"token\":\"#{obtainedUuid}\"}"))
+    .check(jsonPath("$.json.token").isEL("#{obtainedUuid}")));  // verify round-trip
+```
+
+Combined with the CSV feeder (`csv("data/users.csv").circular()`), each virtual user is a distinct actor with a distinct token — no cross-session bleeding.
 
 ---
 

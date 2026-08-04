@@ -49,4 +49,28 @@ public final class RestApiChains {
                     .exec(statusOk)
                     .pause(1, 2)
                     .exec(postJson);
+
+    // ---------- Stateful chain — extract from response, reuse in next request ----------
+
+    /**
+     * Real-world correlation pattern: call /uuid, extract the returned UUID,
+     * then POST it to /anything and verify httpbin echoed it back.
+     * <p>
+     * Session variables (set via {@code saveAs}) persist across requests
+     * within a single virtual user's session and are interpolated with {@code #{name}}.
+     */
+    public static final ChainBuilder statefulChain =
+            exec(http("GET /uuid — obtain a token")
+                    .get("/uuid")
+                    .check(status().is(200))
+                    .check(jsonPath("$.uuid").saveAs("obtainedUuid")))
+                    .pause(1)
+                    .exec(http("POST /anything — use the token")
+                            .post("/anything")
+                            .header("X-Correlation-Id", "#{obtainedUuid}")
+                            .body(StringBody("{\"token\":\"#{obtainedUuid}\",\"actor\":\"#{actor}\"}"))
+                            .check(status().is(200))
+                            // httpbin echoes the body back — assert the token round-tripped correctly.
+                            .check(jsonPath("$.json.token").isEL("#{obtainedUuid}"))
+                            .check(jsonPath("$.headers.X-Correlation-Id").isEL("#{obtainedUuid}")));
 }

@@ -54,9 +54,18 @@ case "$PROFILE" in
       -DCONSTANT_2=10 -DCONSTANT_2_DURATION=60
     ;;
 
+  stateful)
+    mvn -q gatling:test \
+      -Dgatling.simulationClass=simulations.StatefulChainSimulation \
+      -DBASE_URL="$BASE_URL" \
+      -DSEQUENCE="RAMP_USERS_1,CONSTANT_1" \
+      -DRAMP_USERS_1=5 -DRAMP_USERS_1_DURATION=10 \
+      -DCONSTANT_1=5 -DCONSTANT_1_DURATION=60
+    ;;
+
   *)
     echo "Unknown profile: $PROFILE" >&2
-    echo "Usage: $0 {smoke|load|stress|spike}" >&2
+    echo "Usage: $0 {smoke|load|stress|spike|stateful}" >&2
     exit 1
     ;;
 esac
