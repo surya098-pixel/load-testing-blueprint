@@ -1,0 +1,30 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Gatling outputs
+results/
+gatling-results/
+simulation.log
+
+# Secrets — never commit
+*.env
+*.secret
+secrets/
+src/test/resources/data/prod-*.csv

@@ -1,0 +1,9 @@
+actor,role
+alice,admin
+bob,editor
+carol,viewer
+dan,viewer
+eve,editor
+frank,admin
+grace,viewer
+heidi,editor
