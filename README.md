@@ -160,6 +160,16 @@ Set an auth token as the `LOAD_TEST_AUTH_TOKEN` repo secret — it's read from t
 4. **Set realistic assertions** — smoke should be strict (99 %+, 2 s p95). Stress should have none.
 5. **Wire secrets** — auth token as env var / GitHub Actions secret.
 
+## Part of the QA Blueprint series
+
+Three companion templates that cover the QA automation stack end-to-end:
+
+| | Repo | Stack | For |
+|---|---|---|---|
+| 🎭 | [qa-automation-blueprint](https://github.com/surya098-pixel/qa-automation-blueprint) | Playwright + TypeScript | UI end-to-end tests |
+| 🥒 | [api-automation-blueprint](https://github.com/surya098-pixel/api-automation-blueprint) | RestAssured + Cucumber + Java | API contract & regression |
+| 🚀 | **load-testing-blueprint** *(you are here)* | Gatling + Java | Load, stress & spike |
+
 ## License & attribution
 
 This project (the template itself) is released under the **MIT License** — see [LICENSE](LICENSE).
