@@ -179,3 +179,7 @@ It depends on third-party open-source software, most notably **Gatling** (Apache
 *"Gatling" is a trademark of Gatling Corp. This project is not affiliated with, endorsed by, or a product of Gatling Corp — the name is used descriptively to identify the runtime this template targets.*
 
 © 2026 [Surya Reddy](https://github.com/surya098-pixel)
+
+---
+
+<sub>💡 If this template saved you time, [give it a star](../../stargazers) — it helps others find it. Track growth on [star-history](https://star-history.com/#surya098-pixel/load-testing-blueprint&Date).</sub>
