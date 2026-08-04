@@ -4,6 +4,8 @@ import io.gatling.javaapi.core.ScenarioBuilder;
 import modules.RestApiChains;
 import utilities.RunnerHelper;
 
+import java.time.Duration;
+
 import static io.gatling.javaapi.core.CoreDsl.*;
 
 /**
@@ -20,21 +22,15 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 public class SmokeSimulation extends BaseSimulation {
 
     private final ScenarioBuilder scenario = scenario("Smoke — single user, full journey")
-            .feed(feeder())
+            .exec(session -> session.set("actor", "smoke-user"))
             .exec(RestApiChains.browseAndPost);
-
-    private static java.util.Iterator<java.util.Map<String, Object>> feeder() {
-        return listFeeder(
-                java.util.List.of(java.util.Map.of("actor", "smoke-user"))
-        ).circular().apply(null);
-    }
 
     {
         int users = RunnerHelper.userCount > 0 ? RunnerHelper.userCount : 1;
         long duration = RunnerHelper.maxDuration > 0 ? RunnerHelper.maxDuration : 30;
 
         setUp(
-                scenario.injectOpen(constantUsersPerSec(users).during(java.time.Duration.ofSeconds(duration)))
+                scenario.injectOpen(constantUsersPerSec(users).during(Duration.ofSeconds(duration)))
         )
                 .protocols(httpProtocol)
                 .assertions(
