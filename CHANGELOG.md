@@ -5,12 +5,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); version
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-05
+
 ### Added
 - **`StatefulChainSimulation`** — 5th profile demonstrating real-world correlation: extract from response, reuse in next request, verify round-trip
 - **CSV feeder wired** — `data/users.csv` now drives per-VU `#{actor}` values in the stateful scenario (previously the file existed but was unused)
 - `statefulChain` chain in `RestApiChains` — httpbin `/uuid` → `/anything` with `X-Correlation-Id` propagation
 - `scripts/run.sh stateful` profile
 - README documents the correlation pattern with an inline snippet
+- **Live sample report** auto-deployed to GitHub Pages on every push to `main`
+
+[0.2.0]: https://github.com/surya098-pixel/load-testing-blueprint/releases/tag/v0.2.0
 
 ## [0.1.0] - 2026-08-05
 

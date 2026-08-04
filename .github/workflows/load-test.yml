@@ -12,11 +12,16 @@ on:
         required: true
         default: 'smoke'
         type: choice
-        options: [smoke, load, stress, spike]
+        options: [smoke, load, stress, spike, stateful]
       base_url:
         description: 'Base URL to target'
         required: false
         default: 'https://httpbin.org'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   gatling:
@@ -47,3 +52,31 @@ jobs:
           name: gatling-report-${{ inputs.profile || 'smoke' }}-${{ github.run_number }}
           path: target/gatling/
           retention-days: 30
+
+      - name: Flatten Gatling report for Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          mkdir -p pages-content
+          # Gatling creates target/gatling/<simulation>-<timestamp>/... — pick the newest.
+          latest=$(ls -td target/gatling/*/ 2>/dev/null | head -1)
+          if [ -n "$latest" ]; then
+            cp -r "$latest"/* pages-content/
+          fi
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages-content
+
+  deploy-report:
+    name: Deploy sample report to GitHub Pages
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: gatling
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

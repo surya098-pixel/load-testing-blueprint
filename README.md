@@ -6,9 +6,12 @@
 > *Not affiliated with, endorsed by, or a product of Gatling Corp — see [NOTICE](NOTICE).*
 
 [![Load Test](https://github.com/surya098-pixel/load-testing-blueprint/actions/workflows/load-test.yml/badge.svg)](https://github.com/surya098-pixel/load-testing-blueprint/actions/workflows/load-test.yml)
+[![Live Report](https://img.shields.io/badge/live-Gatling%20report-FF6B00?logo=github)](https://surya098-pixel.github.io/load-testing-blueprint/)
 [![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)](https://openjdk.org)
 [![Gatling](https://img.shields.io/badge/Gatling-3.11-FF6B00)](https://gatling.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+👉 **[View a live sample report](https://surya098-pixel.github.io/load-testing-blueprint/)** — auto-published from CI on every push to `main`.
 
 ---
 
