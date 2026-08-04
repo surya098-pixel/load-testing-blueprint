@@ -1,7 +1,9 @@
 # load-testing-blueprint
 
-> Production-grade **Gatling** load testing framework in **Java 17**.
+> An open-source starter template **built on top of [Gatling](https://gatling.io)** for load testing in **Java 17**.
 > One codebase, four canonical profiles (smoke, load, stress, spike), and a dynamic injection DSL you drive from the CLI.
+>
+> *Not affiliated with, endorsed by, or a product of Gatling Corp — see [NOTICE](NOTICE).*
 
 [![Load Test](https://github.com/surya098-pixel/load-testing-blueprint/actions/workflows/load-test.yml/badge.svg)](https://github.com/surya098-pixel/load-testing-blueprint/actions/workflows/load-test.yml)
 [![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)](https://openjdk.org)
@@ -12,9 +14,9 @@
 
 ## Why this template exists
 
-Most Gatling starters give you one simulation class hard-coded to one shape of load. Real teams need to run **the same simulation as smoke / load / stress / spike** with a single flag change, and want the load pattern itself to be **data-driven from the command line** so pipelines can shape a run without editing code.
+Most Gatling starter examples give you one simulation class hard-coded to one shape of load. Real teams need to run **the same simulation as smoke / load / stress / spike** with a single flag change, and want the load pattern itself to be **data-driven from the command line** so pipelines can shape a run without editing code.
 
-This template captures that pattern.
+This template captures that pattern. It uses Gatling's open-source edition (`gatling-charts-highcharts`, Apache 2.0) as a Maven dependency — no Gatling code is bundled or redistributed here.
 
 | Feature | Included |
 |---|---|
@@ -158,6 +160,12 @@ Set an auth token as the `LOAD_TEST_AUTH_TOKEN` repo secret — it's read from t
 4. **Set realistic assertions** — smoke should be strict (99 %+, 2 s p95). Stress should have none.
 5. **Wire secrets** — auth token as env var / GitHub Actions secret.
 
-## License
+## License & attribution
 
-MIT © [Surya Reddy](https://github.com/surya098-pixel)
+This project (the template itself) is released under the **MIT License** — see [LICENSE](LICENSE).
+
+It depends on third-party open-source software, most notably **Gatling** (Apache License 2.0) and its associated Maven plugin. Full attribution and trademark disclaimers are in [NOTICE](NOTICE). Dependencies are resolved from Maven Central at build time — none of their code is redistributed in this repository.
+
+*"Gatling" is a trademark of Gatling Corp. This project is not affiliated with, endorsed by, or a product of Gatling Corp — the name is used descriptively to identify the runtime this template targets.*
+
+© 2026 [Surya Reddy](https://github.com/surya098-pixel)

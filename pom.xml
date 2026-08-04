@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>Load Testing Blueprint</name>
-    <description>Production-grade Gatling load testing framework with a dynamic injection DSL.</description>
+    <description>Open-source starter template for load testing with Gatling — includes a dynamic injection DSL. Not affiliated with Gatling Corp.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

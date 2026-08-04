@@ -1,0 +1,23 @@
+load-testing-blueprint
+Copyright (c) 2026 Surya Reddy
+
+This product includes software developed by third parties, listed below.
+All third-party components are declared as Maven dependencies and are NOT
+redistributed as part of this repository — they are downloaded from Maven
+Central at build time.
+
+--------------------------------------------------------------------------------
+Gatling (io.gatling.highcharts:gatling-charts-highcharts)
+Copyright (c) Gatling Corp — https://gatling.io
+Licensed under the Apache License, Version 2.0
+https://www.apache.org/licenses/LICENSE-2.0
+
+Gatling Maven Plugin (io.gatling:gatling-maven-plugin)
+Copyright (c) Gatling Corp — https://gatling.io
+Licensed under the Apache License, Version 2.0
+
+"Gatling" is a trademark of Gatling Corp. Reference to Gatling in this
+repository is descriptive (nominative fair use), identifying the tool this
+template is intended to run on. This project is NOT affiliated with,
+endorsed by, or a product of Gatling Corp.
+--------------------------------------------------------------------------------
