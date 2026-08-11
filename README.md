@@ -195,6 +195,7 @@ Three companion templates + a tool that cover the QA automation stack end-to-end
 | 🥒 | [api-automation-blueprint](https://github.com/surya098-pixel/api-automation-blueprint) | RestAssured + Cucumber + Java | API contract & regression |
 | 🚀 | **load-testing-blueprint** *(you are here)* | Gatling + Java | Load, stress & spike |
 | 🎯 | [flaky-test-detector](https://github.com/surya098-pixel/flaky-test-detector) | Node CLI + GitHub Action | Finding flaky tests |
+| 🧰 | [qa-toolkit](https://github.com/surya098-pixel/qa-toolkit) | Reference notes | Commands + recipes I actually use |
 
 ## License & attribution
 
