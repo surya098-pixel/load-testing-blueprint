@@ -191,7 +191,7 @@ Three companion templates + a tool that cover the QA automation stack end-to-end
 
 | | Repo | Stack | For |
 |---|---|---|---|
-| 🎭 | [qa-automation-blueprint](https://github.com/surya098-pixel/qa-automation-blueprint) | Playwright + TypeScript | UI end-to-end tests |
+| 🎭 | [ui-automation-blueprint](https://github.com/surya098-pixel/ui-automation-blueprint) | Playwright + TypeScript | UI end-to-end tests |
 | 🥒 | [api-automation-blueprint](https://github.com/surya098-pixel/api-automation-blueprint) | RestAssured + Cucumber + Java | API contract & regression |
 | 🚀 | **load-testing-blueprint** *(you are here)* | Gatling + Java | Load, stress & spike |
 | 🎯 | [flaky-test-detector](https://github.com/surya098-pixel/flaky-test-detector) | Node CLI + GitHub Action | Finding flaky tests |
